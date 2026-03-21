@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/auth/login",              "destination": "/api/auth/login" },
+    { "source": "/api/auth/signup",             "destination": "/api/auth/signup" },
+    { "source": "/api/auth/me",                 "destination": "/api/auth/me" },
+    { "source": "/api/users",                   "destination": "/api/users/index" },
+    { "source": "/api/users/:u",                "destination": "/api/users/[u]" },
+    { "source": "/api/songs/charts",            "destination": "/api/songs/charts" },
+    { "source": "/api/songs",                   "destination": "/api/songs/index" },
+    { "source": "/api/songs/:id",               "destination": "/api/songs/[id]" },
+    { "source": "/api/messages",                "destination": "/api/messages/index" },
+    { "source": "/api/messages/:u",             "destination": "/api/messages/[u]" },
+    { "source": "/api/invites",                 "destination": "/api/invites/index" },
+    { "source": "/api/invites/:code",           "destination": "/api/invites/[code]" },
+    { "source": "/api/reports",                 "destination": "/api/reports/index" },
+    { "source": "/api/reports/:id",             "destination": "/api/reports/[id]" },
+    { "source": "/(.*)",                        "destination": "/public/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin",  "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,PATCH,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type,Authorization" }
+      ]
+    }
+  ],
+  "functions": {
+    "api/**/*.js": { "maxDuration": 30 }
+  }
+}
